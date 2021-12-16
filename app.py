@@ -13,16 +13,13 @@ def main() :
 
     st.info('신도림 엉베흐 존맛턍인거 다들아시죠? 존맛입니다')
 
-    df = pd.read_csv('data/winemag.csv')
+    df = pd.read_csv('data/winemag.csv', index_col=0)
+    df.dropna(axis=0, inplace=True)
+    df.to_csv('data/winemag.csv')
     st.dataframe(df)
-
-p = 0.01
-df = pd.read_csv(
-    'data/winemag.csv',
-    header=0,
-    skiprows=lambda i: i > 0 and random.random() > p
-)
-df.to_csv('data/winemag.csv')
+    
+    # '{:.2f}'.format
+    # choice_list = st.multiselect("여러개를 선택할 수 있습니다.", language)
 
 
 if __name__ == '__main__' :
