@@ -7,6 +7,7 @@ import os
 import random
 
 
+
 def main() :
     st.title('최고의 와인을 알아보자!')
     st.text('쉬라 존맛이라네용 :3')
