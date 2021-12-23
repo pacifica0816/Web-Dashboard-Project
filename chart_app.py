@@ -7,41 +7,25 @@ import seaborn as sns
 def run_chart_app() :
 
     
-    side_menu = ['Bar', 'Map']
-    side_box = st.sidebar.selectbox("Distribution", ("Bar", " Map"))
+    # 사이드 메뉴
 
-    if side_menu == 'Bar' :
-       
-        st.title('바차트')
+    radio_menu = ['Bar', 'dia']
+    selected_radio = st.sidebar.radio("Distribution", radio_menu)
+
+    df = pd.read_csv('data/winemag.csv', index_col=0)
+    df.dropna(axis=0, inplace=True)
+    df.to_csv('data/winemag.csv')
+
+    if selected_radio == 'Bar' :
+        st.title('Bar Chart')
+        st.write(' 지역별 리뷰 수 ')
+    
+
+        fig1 = plt.figure()
+        df['province'].hist()
+        st.pyplot(fig1)
         
-        radio_menu = ['Country','Province','Price']
-        selected_radio = st.radio('Visualization : ', radio_menu)
 
-        # if selected_radio == 'Bar' :
-        #     st.write('바차트')
-        # elif selected_radio == 'Map' :
-        #     st.write('맵~')
-        
-    elif side_menu == 'Map' :
-        st.title('맵')
+    elif selected_radio == 'dia':
+        st.write('--')
 
-
-
-
-
-
-    # b = (
-    #     Bar()
-    #     .add_xaxis(["Microsoft", "Amazon", "IBM", "Oracle", "Google", "Alibaba"])
-    #     .add_yaxis("2017-2018 Revenue in (billion $)", random.sample(range(100), 10))
-    #     .set_global_opts(
-    #         title_opts=opts.TitleOpts(
-    #             title="Top cloud providers 2018", subtitle="2017-2018 Revenue"
-    #         ),
-    #         toolbox_opts=opts.ToolboxOpts(),
-    #     )
-    # )
-    # st_pyecharts(
-    #     b, key="echarts"
-    # )  # Add key argument to not remount component at every Streamlit run
-    # st.button("Randomize data")

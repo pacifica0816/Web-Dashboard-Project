@@ -5,23 +5,25 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 import random
-from data_app import run_data_app
-from display_app import run_display_app
+from search_app import run_search_app
+from briefing_app import run_briefing_app
 from chart_app import run_chart_app
 
 
 def main() :
-    st.sidebar.header('Configuration')
-    menu = ['Home','Data', 'Display', 'Chart']
-    choice = st.sidebar.selectbox('Choose your preferred API:', menu)
+    st.sidebar.header('Menu')
+    menu = ['Home','Search', 'Briefing', 'Chart']
+    choice = st.sidebar.selectbox('Choose your preferred display:', menu)
 
     if choice == 'Home' :
-        st.title('소믈리에의 와인 리뷰')
-        st.write('좋은 평을 받은 와인을 알아보기!')
-    elif choice == 'Data' :
-        run_data_app()
-    elif choice == 'Display' :
-        run_display_app()
+        st.title('Wine reviewed by world famous tasters.')
+        st.write('유명 테이스터들이 평가한 와인 데이터를 분석한 앱입니다.')
+        st.image('data/wine.gif')
+        
+    elif choice == 'Search' :
+        run_search_app()
+    elif choice == 'Briefing' :
+        run_briefing_app()
     elif choice == 'Chart' :
         run_chart_app()
 
