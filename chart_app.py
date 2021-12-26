@@ -7,25 +7,21 @@ import seaborn as sns
 def run_chart_app() :
 
     
-    # 사이드 메뉴
-
-    radio_menu = ['Bar', 'dia']
-    selected_radio = st.sidebar.radio("Distribution", radio_menu)
-
     df = pd.read_csv('data/winemag.csv', index_col=0)
     df.dropna(axis=0, inplace=True)
     df.to_csv('data/winemag.csv')
 
-    if selected_radio == 'Bar' :
-        st.title('Bar Chart')
-        st.write(' 지역별 리뷰 수 ')
+    st.title('Bar Chart')
+
+    st.subheader(' 지역별 리뷰 수 ')
+    fig1 = plt.figure()
+    df['province'].hist()
+    st.pyplot(fig1)
     
 
-        fig1 = plt.figure()
-        df['province'].hist()
-        st.pyplot(fig1)
-        
+    st.subheader(' 점수대별 리뷰 수 ')
+    fig2 = plt.figure()
+    df['points'].hist()
+    st.pyplot(fig2)
 
-    elif selected_radio == 'dia':
-        st.write('--')
-
+    print(df['province'].nunique)
